@@ -1,13 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 
-import { ValidationService } from './core/components/validation-messages/validation-messages.service';
+import { ValidationService } from '../core/components/validation-messages/validation-messages.service';
 @Component({
-  selector: 'app-root',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+  selector: 'app-form1',
+  templateUrl: './form1.component.html',
+  styleUrls: ['./form1.component.css']
 })
-export class AppComponent implements OnInit {
+export class Form1Component implements OnInit {
   userForm: any;
   constructor(private formBuilder: FormBuilder,
     private validationService: ValidationService) {

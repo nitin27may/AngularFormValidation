@@ -1,24 +1,22 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 
-import { ValidationService } from './core/components/validation-messages/validation-messages.service';
 @Component({
-  selector: 'app-root',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+  selector: 'app-form2',
+  templateUrl: './form2.component.html',
+  styleUrls: ['./form2.component.css']
 })
-export class AppComponent implements OnInit {
+export class Form2Component implements OnInit {
   userForm: any;
-  constructor(private formBuilder: FormBuilder,
-    private validationService: ValidationService) {
+  constructor(private formBuilder: FormBuilder) {
 
   }
 
   createForm() {
     this.userForm = this.formBuilder.group({
       'Name': ['', [Validators.required, Validators.minLength(2), Validators.maxLength(35)]],
-      'Email': ['', [Validators.required, this.validationService.emailValidator]],
-      'Mobile': ['', [Validators.required, this.validationService.mobileValidator]]
+      'Email': ['', [Validators.required]],
+      'Mobile': ['', [Validators.required]]
     });
   }
 

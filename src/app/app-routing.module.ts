@@ -1,4 +1,4 @@
-import { NgModule }             from '@angular/core';
+import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
 import { Form1Component } from './form1/form1.component';
@@ -33,4 +33,5 @@ const appRoutes: Routes = [
   providers: [
   ]
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {
+}

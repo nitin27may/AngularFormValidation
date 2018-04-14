@@ -22,16 +22,16 @@ export class Form1Component implements OnInit {
     });
   }
 
-  reset(){
+  reset() {
     this.createForm();
   }
   ngOnInit() {
     this.createForm();
   }
 
-  saveUser(userForm: any){
+  saveUser(userForm: any) {
     // Added check form valid, if any user inspecting html and enabling submit Button
-    if (userForm.valid){
+    if (userForm.valid) {
       console.log(userForm.value);
     }
 

@@ -1,9 +1,1 @@
 /* You can add global styles to this file, and also import other style files */
-.alert-danger {
-    color: red;
-    background-color: transparent;
-    border-color: transparent;
-}
-input.ng-invalid.ng-touched {
-    border: 1px solid red;
-}

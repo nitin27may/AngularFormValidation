@@ -1,24 +1,34 @@
-import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { Component, OnInit } from "@angular/core";
+import { FormGroup, FormBuilder, Validators } from "@angular/forms";
 
-import { ValidationService } from './core/components/validation-messages/validation-messages.service';
+import { ValidationService } from "./core/components/validation-messages/validation-messages.service";
 @Component({
-  selector: 'app-root',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+  selector: "app-root",
+  templateUrl: "./app.component.html",
+  styleUrls: ["./app.component.css"],
 })
 export class AppComponent implements OnInit {
   userForm: any;
-  constructor(private formBuilder: FormBuilder,
-    private validationService: ValidationService) {
-
-  }
+  constructor(
+    private formBuilder: FormBuilder,
+    private validationService: ValidationService
+  ) {}
 
   createForm() {
     this.userForm = this.formBuilder.group({
-      'Name': ['', [Validators.required, Validators.minLength(2), Validators.maxLength(35)]],
-      'Email': ['', [Validators.required, this.validationService.emailValidator]],
-      'Mobile': ['', [Validators.required, this.validationService.mobileValidator]]
+      Name: [
+        "",
+        [
+          Validators.required,
+          Validators.minLength(2),
+          Validators.maxLength(35),
+        ],
+      ],
+      Email: ["", [Validators.required, this.validationService.emailValidator]],
+      Mobile: [
+        "",
+        [Validators.required, this.validationService.mobileValidator],
+      ],
     });
   }
 
@@ -34,6 +44,5 @@ export class AppComponent implements OnInit {
     if (userForm.valid) {
       console.log(userForm.value);
     }
-
   }
 }

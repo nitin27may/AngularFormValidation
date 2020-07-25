@@ -1,22 +1,28 @@
-import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { Component, OnInit } from "@angular/core";
+import { FormGroup, FormBuilder, Validators } from "@angular/forms";
 
 @Component({
-  selector: 'app-form2',
-  templateUrl: './form2.component.html',
-  styleUrls: ['./form2.component.css']
+  selector: "app-form2",
+  templateUrl: "./form2.component.html",
+  styleUrls: ["./form2.component.css"],
 })
 export class Form2Component implements OnInit {
-  userForm: any;
-  constructor(private formBuilder: FormBuilder) {
-
-  }
+  userForm: FormGroup;
+  myText: string;
+  constructor(private formBuilder: FormBuilder) {}
 
   createForm() {
     this.userForm = this.formBuilder.group({
-      'Name': ['', [Validators.required, Validators.minLength(2), Validators.maxLength(35)]],
-      'Email': ['', [Validators.required]],
-      'Mobile': ['', [Validators.required]]
+      Name: [
+        "",
+        [
+          Validators.required,
+          Validators.minLength(2),
+          Validators.maxLength(35),
+        ],
+      ],
+      Email: ["", [Validators.required]],
+      Mobile: ["", [Validators.required]],
     });
   }
 
@@ -32,6 +38,5 @@ export class Form2Component implements OnInit {
     if (userForm.valid) {
       console.log(userForm.value);
     }
-
   }
 }

@@ -1,58 +1,86 @@
 <div class="container">
-    <div class="col-md-3"></div>
+  <div class="col-md-3"></div>
 
-    <div class="col-md-6">
-        <div class="form-area">
-            <form [formGroup]="userForm" (submit)="saveUser(userForm)">
-                <br style="clear:both">
-                <h3 style="margin-bottom: 25px; text-align: center;">Contact Form2</h3>
-                <div class="form-group">
-                    <input #Name class="form-control" type="text" formControlName="Name" placeholder="Name" />
-                    <div class="alert-danger" *ngIf="userForm.get('Name').hasError('required') && userForm.get('Name').touched">
-                        Required
-                    </div>
-                    <div class="alert-danger" *ngIf="userForm.get('Name').hasError('minlength') && userForm.get('Name').touched">
-                        Minimum of 2 characters
-                    </div>
-                    <div class="alert-danger" *ngIf="userForm.get('Name').hasError('maxlength') && userForm.get('Name').touched">
-                        Max of 35 characters
-                    </div>
-                </div>
-                <div class="form-group">
-                    <input type="text" class="form-control" formControlName="Email" name="Email" placeholder="Email" required pattern="/[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/">
-                    <div class="alert-danger" *ngIf="userForm.get('Email').hasError('required') && userForm.get('Email').touched">
-                        Required
-                    </div>
-                    <div class="alert-danger" *ngIf="userForm.get('Email').hasError('pattern') && userForm.get('Email').touched">
-                        Invalid email address
-                    </div>
-                </div>
-                <div class="form-group">
-                    <input type="text" class="form-control" formControlName="Mobile" name="Mobile" placeholder="Mobile Number" required pattern="/^(\+\d{1,3}[- ]?)?\d{10}$/">
-                    <div class="alert-danger" *ngIf="userForm.get('Mobile').hasError('required') && userForm.get('Mobile').touched">
-                        Required
-                    </div>
-                    <div class="alert-danger" *ngIf="userForm.get('Mobile').hasError('pattern') && userForm.get('Mobile').touched">
-                        Invalid Mobile no
-                    </div>
-                </div>
-                <div class="form-group">
-                    <input type="text" class="form-control" id="subject" name="subject" placeholder="Subject" required>
-                </div>
-                <div class="form-group">
-                    <textarea class="form-control" type="textarea" #text (keyup)="myText = text.value" placeholder="Message" maxlength="199"
-                        rows="4"></textarea>
-                    <label *ngIf="myText"> {{myText | countdown: 199}} characters remaining</label>
-
-                </div>
-                <div *ngIf="userForm.valid">
-                    Form value: {{userForm.value | json}} Form status: {{userForm.status | json}}
-                </div>
-                <div class="btn-toolbar pull-right">
-                    <button type="button" (click)="reset()" name="reset" class="btn btn-default">Reset</button>
-                    <button [disabled]="userForm.invalid" type="submit" name="submit" class="btn btn-primary">Submit</button>
-                </div>
-            </form>
+  <div class="col-md-6">
+    <div class="form-area">
+      <form [formGroup]="userForm" (submit)="saveUser(userForm)">
+        <br style="clear: both;" />
+        <h3 style="margin-bottom: 25px; text-align: center;">Contact Form2</h3>
+        <div class="form-group">
+          <input #Name class="form-control" type="text" formControlName="Name" placeholder="Name" />
+          <div class="alert-danger" *ngIf="
+              userForm.get('Name').hasError('required') &&
+              userForm.get('Name').touched
+            ">
+            Required
+          </div>
+          <div class="alert-danger" *ngIf="
+              userForm.get('Name').hasError('minlength') &&
+              userForm.get('Name').touched
+            ">
+            Minimum of 2 characters
+          </div>
+          <div class="alert-danger" *ngIf="
+              userForm.get('Name').hasError('maxlength') &&
+              userForm.get('Name').touched
+            ">
+            Max of 35 characters
+          </div>
         </div>
+        <div class="form-group">
+          <input type="text" class="form-control" formControlName="Email" name="Email" placeholder="Email" required
+            pattern="/[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/" />
+          <div class="alert-danger" *ngIf="
+              userForm.get('Email').hasError('required') &&
+              userForm.get('Email').touched
+            ">
+            Required
+          </div>
+          <div class="alert-danger" *ngIf="
+              userForm.get('Email').hasError('pattern') &&
+              userForm.get('Email').touched
+            ">
+            Invalid email address
+          </div>
+        </div>
+        <div class="form-group">
+          <input type="text" class="form-control" formControlName="Mobile" name="Mobile" placeholder="Mobile Number"
+            required pattern="/^(\+\d{1,3}[- ]?)?\d{10}$/" />
+          <div class="alert-danger" *ngIf="
+              userForm.get('Mobile').hasError('required') &&
+              userForm.get('Mobile').touched
+            ">
+            Required
+          </div>
+          <div class="alert-danger" *ngIf="
+              userForm.get('Mobile').hasError('pattern') &&
+              userForm.get('Mobile').touched
+            ">
+            Invalid Mobile no
+          </div>
+        </div>
+        <div class="form-group">
+          <input type="text" class="form-control" id="subject" name="subject" placeholder="Subject" required />
+        </div>
+        <div class="form-group">
+          <textarea class="form-control" type="textarea" #text (keyup)="myText = text.value" placeholder="Message"
+            maxlength="199" rows="4"></textarea>
+          <label *ngIf="myText">
+            {{ myText | countdown: 199 }} characters remaining</label>
+        </div>
+        <div *ngIf="userForm.valid">
+          Form value: {{ userForm.value | json }} Form status:
+          {{ userForm.status | json }}
+        </div>
+        <div class="btn-toolbar pull-right">
+          <button type="button" (click)="reset()" name="reset" class="btn btn-default">
+            Reset
+          </button>
+          <button [disabled]="userForm.invalid" type="submit" name="submit" class="btn btn-primary">
+            Submit
+          </button>
+        </div>
+      </form>
     </div>
+  </div>
 </div>

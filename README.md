@@ -37,18 +37,96 @@ If we have multiple error message to handle and show (html view):
   <validation-messages [control]="userForm.controls.Name"></validation-messages>
 </div>
 ```
+
 Validation Component (view):
+```html
+<div class="alert-danger" *ngIf="errorMessage !== null">{{errorMessage}}</div>
+```
 
 Validation Component (ts):
+```ts
+import { Component, Input } from "@angular/core";
+import { FormGroup, FormControl } from "@angular/forms";
+import { ValidationService } from "./validation-messages.service";
 
+@Component({
+  selector: "validation-messages",
+  templateUrl: "validation-messages.component.html",
+  styleUrls: ["validation-messages.component.scss"],
+})
+export class ValidationMessagesComponent {
+  @Input() control: FormControl;
+  constructor(private validationService: ValidationService) {}
+
+  get errorMessage() {
+    for (const propertyName in this.control.errors) {
+      if (
+        this.control.errors.hasOwnProperty(propertyName) &&
+        this.control.touched
+      ) {
+        return this.validationService.getValidatorErrorMessage(
+          propertyName,
+          this.control.errors[propertyName]
+        );
+      }
+    }
+
+    return null;
+  }
+}
+
+```
 
 Validation Service (custom validation rules):
 
+```ts
+import { Injectable } from '@angular/core';
+@Injectable()
+export class ValidationService {
+    constructor() {
+
+    }
+
+    getValidatorErrorMessage(validatorName: string, validatorValue?: any) {
+        const config: any =  {
+            'required': 'Required',
+            'invalidCreditCard': 'Is invalid credit card number',
+            'invalidEmailAddress': 'Invalid email address',
+            'invalidMobile': 'Invalid Mobile no',
+            'invalidPassword': 'Invalid password. Password must be at least 6 characters long, and contain a number.',
+            'minlength': `Minimum length ${validatorValue.requiredLength}`,
+            'maxlength': `Max length ${validatorValue.requiredLength}`
+        };
+        return config[validatorName];
+    }
+
+    emailValidator(control: any) {
+      if (
+        control.value.match(
+          /[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/
+        )
+      ) {
+        return null;
+      } else {
+        return { invalidEmailAddress: true };
+      }
+    }
+
+    mobileValidator(control: any) {
+        if (control.value.match(/^(\+\d{1,3}[- ]?)?\d{10}$/)) {
+            return null;
+        } else {
+            return { 'invalidMobile': true };
+        }
+    }
+}
+
+```
 
 
 
 
-[Live Example](https://stackblitz.com/github/nitin27may/FormValidation)
+
 ## Build
 
 Run `npm run build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `-prod` flag for a production build.

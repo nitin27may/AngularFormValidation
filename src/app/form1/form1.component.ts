@@ -19,16 +19,34 @@ export class Form1Component implements OnInit {
     this.userForm = this.formBuilder.group({
       Name: [
         "",
-        [
-          Validators.required,
-          Validators.minLength(2),
-          Validators.maxLength(35),
-        ],
+        {
+          validators: [
+            Validators.required,
+            Validators.minLength(2),
+            Validators.maxLength(35),
+          ],
+          updateOn: "blur",
+        },
       ],
-      Email: ["", [Validators.required, this.validationService.emailValidator]],
+      Email: [
+        "",
+        {
+          validators: [
+            Validators.required,
+            this.validationService.emailValidator,
+          ],
+          updateOn: "blur",
+        },
+      ],
       Mobile: [
         "",
-        [Validators.required, this.validationService.mobileValidator],
+        {
+          validators: [
+            Validators.required,
+            this.validationService.mobileValidator,
+          ],
+          updateOn: "blur",
+        },
       ],
     });
   }

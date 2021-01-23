@@ -28,8 +28,7 @@
           </div>
         </div>
         <div class="form-group">
-          <input type="text" class="form-control" formControlName="Email" name="Email" placeholder="Email" required
-            pattern="/[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/" />
+          <input type="text" class="form-control" formControlName="Email" name="Email" placeholder="Email" />
           <div class="alert-danger" *ngIf="
               userForm.get('Email').hasError('required') &&
               userForm.get('Email').touched
@@ -44,8 +43,7 @@
           </div>
         </div>
         <div class="form-group">
-          <input type="text" class="form-control" formControlName="Mobile" name="Mobile" placeholder="Mobile Number"
-            required pattern="/^(\+\d{1,3}[- ]?)?\d{10}$/" />
+          <input type="text" class="form-control" formControlName="Mobile" name="Mobile" placeholder="Mobile Number" />
           <div class="alert-danger" *ngIf="
               userForm.get('Mobile').hasError('required') &&
               userForm.get('Mobile').touched

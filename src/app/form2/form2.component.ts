@@ -12,17 +12,17 @@ export class Form2Component implements OnInit {
   constructor(private formBuilder: FormBuilder) {}
 
   createForm() {
+    let emailregex: RegExp = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+    let mobileregex: RegExp = /^(\+\d{1,3}[- ]?)?\d{10}$/
     this.userForm = this.formBuilder.group({
       Name: [
-        "",
-        [
-          Validators.required,
+        "", { validators: [Validators.required,
           Validators.minLength(2),
-          Validators.maxLength(35),
-        ],
+          Validators.maxLength(35),], updateOn: "blur" }
+
       ],
-      Email: ["", [Validators.required]],
-      Mobile: ["", [Validators.required]],
+      Email: [null, { validators: [Validators.required, Validators.pattern(emailregex)], updateOn: "blur"}],
+      Mobile: [ null, { validators: [Validators.required, Validators.pattern(mobileregex)], updateOn: "blur"}],
     });
   }
 

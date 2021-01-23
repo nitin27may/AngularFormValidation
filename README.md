@@ -1,6 +1,8 @@
-# Form Validation
+# Angular Form Validation
 
-This is a sample project to showcase that how we can make resusable componenet with reusable validation logics which we can use for any forms. If we will expose this an npm package then we can use it any project.
+Form validation is crucial part of any project. We as developer spends most of the time arround it. This is my take on resusable componenet with reusable validation logics which we can use for any forms. If we will expose this an npm package then we can use it any project.
+
+Idea is about to remove all boilerplate code in view and reuse validation logic.
 
 ## Use Case
 If we have multiple error message to handle and show (html view):
@@ -35,7 +37,14 @@ If we have multiple error message to handle and show (html view):
   <validation-messages [control]="userForm.controls.Name"></validation-messages>
 </div>
 ```
-Component View:
+Validation Component (view):
+
+Validation Component (ts):
+
+
+Validation Service (custom validation rules):
+
+
 
 
 

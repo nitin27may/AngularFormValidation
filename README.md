@@ -3,9 +3,14 @@
 Form validation is crucial part of any project. We as developer spends most of the time arround it. This is my take on resusable componenet with reusable validation logics which we can use for any forms. If we will expose this an npm package then we can use it any project.
 
 Idea is about to remove all boilerplate code in view and reuse validation logic.
+## Demo
+
+
+https://user-images.githubusercontent.com/8065536/139081311-82706c9a-24fa-41b4-a56e-3228532a6f17.mp4
+
 
 ## Use Case
-If we have multiple error message to handle and show (html view):
+If we have multiple error message to handle and show (html view) we will add a lot conditions and html to just show the error messages.  
 
 ### Traditional Approach Refer [Form 1](/src/app/features/from1/form1.component.html)
 ```html
@@ -327,8 +332,7 @@ import { ValidationService } from "./components/validation-errors/validation-mes
         },
         deps: []
       }
-      //controlErrorComponent: CustomControlErrorComponent, // Uncomment to see errors being rendered using a custom component
-      //controlErrorComponentAnchorFn: controlErrorComponentAnchorFn // Uncomment to see errors being positioned differently
+    
     })
   ],
   declarations: [NumberOnlyDirective],

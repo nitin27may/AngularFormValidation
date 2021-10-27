@@ -43,10 +43,10 @@ export class ValidationService {
           const control = formGroup.get(controlName);
           const matchingControl = formGroup.get(matchingControlName);
 
-          // if (!(control.value && matchingControl.value)){
-          //   // return if any of control does not have value
-          //   return;
-          // }
+          if (!(control.value && matchingControl.value)){
+            // return if any of control does not have value
+            return;
+          }
 
           if (matchingControl.errors && !matchingControl.errors.mustMatch) {
               // return if another validator has already found an error on the matchingControl

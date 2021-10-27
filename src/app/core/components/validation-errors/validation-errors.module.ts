@@ -4,7 +4,7 @@ import { ValidationErrorAnchorDirective } from './validaion-error-anchor.directi
 import { ValidationMessagesComponent } from './Validation-messages.component';
 import { CommonModule } from '@angular/common';
 import { FormActionDirective } from './form-action.directive';
-import { ErrorTailorConfig, ErrorTailorConfigProvider, FORM_ERRORS } from './providers';
+import { ControlErrorConfig, ControlErrorConfigProvider, FORM_ERRORS } from './providers';
 import { ValidationService } from "./validation-messages.service";
 
 const api = [ValidationMessagesComponent, ValidationErrorAnchorDirective, ValidationErrorsDirective, FormActionDirective];
@@ -23,13 +23,13 @@ const api = [ValidationMessagesComponent, ValidationErrorAnchorDirective, Valida
   entryComponents: [ValidationMessagesComponent]
 })
 export class ValidaionErrorsModule {
-  static forRoot(config: ErrorTailorConfig = {}): ModuleWithProviders<ValidaionErrorsModule> {
+  static forRoot(config: ControlErrorConfig = {}): ModuleWithProviders<ValidaionErrorsModule> {
     return {
       ngModule: ValidaionErrorsModule,
       providers: [
         ValidationService,
         {
-          provide: ErrorTailorConfigProvider,
+          provide: ControlErrorConfigProvider,
           useValue: config
         },
         {

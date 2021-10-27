@@ -3,7 +3,7 @@ import { fromEvent, Observable } from 'rxjs';
 import { shareReplay, tap } from 'rxjs/operators';
 
 @Directive({
-  selector: 'form[errorTailor]'
+  selector: 'form[controlError]'
 })
 export class FormActionDirective {
   submit$: Observable<Event> = fromEvent(this.element, 'submit').pipe(

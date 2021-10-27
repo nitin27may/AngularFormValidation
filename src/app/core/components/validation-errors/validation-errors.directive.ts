@@ -14,10 +14,10 @@ import {
   EmbeddedViewRef
 } from '@angular/core';
 import { AbstractControl, ControlContainer, NgControl, ValidationErrors } from '@angular/forms';
-import { ValidationMessagesComponent, ControlErrorComponent } from './Validation-messages.component';
+import { ValidationMessagesComponent, ValidationErrorComponent } from './Validation-messages.component';
 import { ValidationErrorAnchorDirective } from './validaion-error-anchor.directive';
 import { EMPTY, fromEvent, merge, NEVER, Observable, Subject } from 'rxjs';
-import { ErrorTailorConfig, ErrorTailorConfigProvider, FORM_ERRORS } from './providers';
+import { ControlErrorConfig, ControlErrorConfigProvider, FORM_ERRORS } from './providers';
 import { distinctUntilChanged, mapTo, startWith, switchMap, takeUntil, tap } from 'rxjs/operators';
 import { FormActionDirective } from './form-action.directive';
 import { ErrorsMap } from './types';
@@ -25,7 +25,7 @@ import { ErrorsMap } from './types';
 @Directive({
   selector:
     '[formControlName]:not([controlErrorsIgnore]), [formControl]:not([controlErrorsIgnore]), [formGroup]:not([controlErrorsIgnore]), [formGroupName]:not([controlErrorsIgnore]), [formArrayName]:not([controlErrorsIgnore]), [ngModel]:not([controlErrorsIgnore])',
-  exportAs: 'errorTailor'
+  exportAs: 'controlError'
 })
 export class ValidationErrorsDirective implements OnInit, OnDestroy {
   @Input('controlErrors') customErrors: ErrorsMap = {};
@@ -35,21 +35,21 @@ export class ValidationErrorsDirective implements OnInit, OnDestroy {
   @Input() controlErrorsOnBlur = true;
   @Input() validationErrorAnchor: ValidationErrorAnchorDirective;
 
-  private ref: ComponentRef<ControlErrorComponent>;
+  private ref: ComponentRef<ValidationErrorComponent>;
   private anchor: ViewContainerRef;
   private submit$: Observable<Event>;
   private reset$: Observable<Event>;
   private control: AbstractControl;
   private destroy = new Subject();
   private showError$ = new Subject();
-  private mergedConfig: ErrorTailorConfig = {};
+  private mergedConfig: ControlErrorConfig = {};
   private customAnchorDestroyFn: () => void;
 
   constructor(
     private vcr: ViewContainerRef,
     private resolver: ComponentFactoryResolver,
     private host: ElementRef,
-    @Inject(ErrorTailorConfigProvider) private config: ErrorTailorConfig,
+    @Inject(ControlErrorConfigProvider) private config: ControlErrorConfig,
     @Inject(FORM_ERRORS) private globalErrors,
     @Optional() private validationErrorAnchorParent: ValidationErrorAnchorDirective,
     @Optional() private form: FormActionDirective,
@@ -100,10 +100,10 @@ export class ValidationErrorsDirective implements OnInit, OnDestroy {
 
   private setError(text: string, error?: ValidationErrors) {
     if (!this.ref) {
-      const factory = this.resolver.resolveComponentFactory<ControlErrorComponent>(
+      const factory = this.resolver.resolveComponentFactory<ValidationErrorComponent>(
         this.mergedConfig.controlErrorComponent
       );
-      this.ref = this.anchor.createComponent<ControlErrorComponent>(factory);
+      this.ref = this.anchor.createComponent<ValidationErrorComponent>(factory);
     }
     const instance = this.ref.instance;
 
@@ -192,7 +192,7 @@ export class ValidationErrorsDirective implements OnInit, OnDestroy {
     return this.vcr;
   }
 
-  private buildConfig(): ErrorTailorConfig {
+  private buildConfig(): ControlErrorConfig {
     return {
       ...{
         blurPredicate(element) {

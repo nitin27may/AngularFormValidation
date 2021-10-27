@@ -3,7 +3,7 @@ import { ValidationErrors } from '@angular/forms';
 
 export type ErrorComponentTemplate = TemplateRef<{ $implicit: ValidationErrors; text: string }>;
 
-export interface ControlErrorComponent {
+export interface ValidationErrorComponent {
   //customClass: string;
   text: string | null;
   createTemplate?(tpl: ErrorComponentTemplate, error: ValidationErrors, text: string): void;
@@ -27,7 +27,7 @@ export interface ControlErrorComponent {
     `
   ]
 })
-export class ValidationMessagesComponent implements ControlErrorComponent {
+export class ValidationMessagesComponent implements ValidationErrorComponent {
   errorText: string | null = null;
   errorTemplate: ErrorComponentTemplate | undefined;
   errorContext: { $implicit: ValidationErrors; text: string };

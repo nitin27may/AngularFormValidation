@@ -138,7 +138,7 @@ If we have multiple error message to handle and show (html view):
 ### Reusable componenet (Refer [Form 2](/src/app/features/from2/form2.component.html) and validation-errors module)
 I got this solution from an article by '**Netanel Basal**'. I have added the validation logics and implmened it as part of [Validation Module](/src/app/core/components/validation-errors/validation-errors.module.ts).
 
-If you will see Form2, there is not lables, span added to display error messages below the controls. 
+If you will see Form2, there is no lables, span added to display error messages below the controls. 
 ```html
 <div class="row justify-content-center">
   <div class="col-lg-4 col-md-4 col-sm-4">

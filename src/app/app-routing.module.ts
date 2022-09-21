@@ -1,9 +1,6 @@
 import { NgModule } from "@angular/core";
 import { RouterModule, Routes } from "@angular/router";
 
-import { Form1Component } from "./features/form1/form1.component";
-import { Form2Component } from "./features/form2/form2.component";
-
 const appRoutes: Routes = [
 
   {
@@ -20,7 +17,6 @@ const appRoutes: Routes = [
   imports: [
     RouterModule.forRoot(appRoutes, {
     enableTracing: true,
-    initialNavigation: "enabled",
     relativeLinkResolution: 'legacy'
 }),
   ],
